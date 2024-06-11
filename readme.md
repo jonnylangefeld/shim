@@ -1,3 +1,10 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/jonnylangefeld/injector)](https://goreportcard.com/report/github.com/jonnylangefeld/injector)
+[![codecov](https://codecov.io/github/jonnylangefeld/injector/graph/badge.svg?token=UEM4SY05CS)](https://codecov.io/github/jonnylangefeld/injector)
+[![Lint & Test](https://github.com/jonnylangefeld/injector/actions/workflows/lint-test.yml/badge.svg)](https://github.com/jonnylangefeld/injector/actions/workflows/lint-test.yml)
+[![Twitter](https://img.shields.io/badge/twitter-@jonnylangefeld-blue.svg)](http://twitter.com/jonnylangefeld)
+[![GitHub release](https://img.shields.io/github/release/jonnylangefeld/injector.svg)](https://github.com/jonnylangefeld/injector/releases)
+![GitHub](https://img.shields.io/github/license/jonnylangefeld/injector)
+
 # Injector
 
 The most user friendly dependency injection library for go!

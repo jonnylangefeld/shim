@@ -1,3 +1,8 @@
+/*
+injector serves as user friendly dependency injection.
+
+Use this library to overwrite a function from an imported package (that isn't available via an interface) with your own stub for testing.
+*/
 package injector
 
 // Run is the main utility function this package offers.

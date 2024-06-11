@@ -1,3 +1,8 @@
+/*
+injector serves as user friendly dependency injection.
+
+Use this library to overwrite a function from an imported package (that isn't available via an interface) with your own stub for testing.
+*/
 package injector
 
 // Run is the main utility function this package offers.
@@ -5,6 +10,25 @@ package injector
 // `Replace(&original).With(replacement)`.
 //
 // Example:
+//
+//	injector.Run(
+//		func() {
+//			// put anything you want run and assert in a test in here
+//
+//			defer assertPanic(t, test.shouldPanic)
+//
+//			main()
+//		},
+//		// Add a list of replacements using `Replace(&original).With(replacement)`
+//		injector.Replace(&osCreate).
+//			With(func(name string) (*os.File, error) {
+//				return test.file, test.createErr
+//			}),
+//		injector.Replace(&fileRead).
+//			With(func(b []byte) (n int, err error) {
+//				return 0, test.readErr
+//			}),
+//	)
 func Run(f func(), replacements ...Replacer) {
 	for _, i := range replacements {
 		i.inject()

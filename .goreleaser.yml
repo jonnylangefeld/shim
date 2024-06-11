@@ -1,6 +1,9 @@
 # Configuration for https://goreleaser.com/
 project_name: injector
 
+builds:
+  - skip: true
+
 release:
   github:
     owner: jonnylangefeld

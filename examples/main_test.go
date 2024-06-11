@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jonnylangefeld/injector/pkg/injector"
+	"github.com/jonnylangefeld/injector"
 )
 
 func TestMain(t *testing.T) {

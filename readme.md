@@ -89,7 +89,7 @@ The injection works similar to described above, just add another replacement int
   )
 ```
 
-For integrated examples check out [`main.go`](main.go) and [`main_test.go`](main_test.go).
+For integrated examples check out [`examples/main.go`](examples/main.go) and [`examples/main_test.go`](examples/main_test.go).
 
 ## Why another library?
 

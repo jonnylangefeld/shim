@@ -1,0 +1,21 @@
+name: Lint & Test
+
+on:
+  push:
+
+jobs:
+  build:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Lint
+        run: go fmt ./... && go vet ./... && git diff --exit-code
+      - name: Test
+        run: go test -v ./... -coverprofile cover.out
+      - name: Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true

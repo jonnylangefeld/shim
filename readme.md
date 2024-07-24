@@ -1,13 +1,13 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/jonnylangefeld/injector)](https://goreportcard.com/report/github.com/jonnylangefeld/injector)
-[![codecov](https://codecov.io/github/jonnylangefeld/injector/graph/badge.svg?token=UEM4SY05CS)](https://codecov.io/github/jonnylangefeld/injector)
-[![Lint & Test](https://github.com/jonnylangefeld/injector/actions/workflows/lint-test.yml/badge.svg)](https://github.com/jonnylangefeld/injector/actions/workflows/lint-test.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jonnylangefeld/shim)](https://goreportcard.com/report/github.com/jonnylangefeld/shim)
+[![codecov](https://codecov.io/github/jonnylangefeld/shim/graph/badge.svg?token=UEM4SY05CS)](https://codecov.io/github/jonnylangefeld/shim)
+[![Lint & Test](https://github.com/jonnylangefeld/shim/actions/workflows/lint-test.yml/badge.svg)](https://github.com/jonnylangefeld/shim/actions/workflows/lint-test.yml)
 [![Twitter](https://img.shields.io/badge/twitter-@jonnylangefeld-blue.svg)](http://twitter.com/jonnylangefeld)
-[![GitHub release](https://img.shields.io/github/release/jonnylangefeld/injector.svg)](https://github.com/jonnylangefeld/injector/releases)
-![GitHub](https://img.shields.io/github/license/jonnylangefeld/injector)
+[![GitHub release](https://img.shields.io/github/release/jonnylangefeld/shim.svg)](https://github.com/jonnylangefeld/shim/releases)
+![GitHub](https://img.shields.io/github/license/jonnylangefeld/shim)
 
-# Injector
+# Shim
 
-The most user friendly dependency injection library for go!
+The most user friendly shimming library for go!
 
 Use this library to overwrite a function from an imported package (that isn't available via an interface) with your own stub for testing.
 
@@ -39,7 +39,7 @@ Then, replace `osCreate` with something you control in your unit test. For insta
 
 ```go
 func TestSomething(t *testing.T) {
-  injector.Run(
+  shim.Run(
     func() {
       // put anything you want run and assert in a test in here as you normally would
       err := something()
@@ -47,7 +47,7 @@ func TestSomething(t *testing.T) {
     },
     // Add a list of replacements using `Replace(&original).With(replacement)`.
     // We can simply define a stub here that returns what we want for testing.
-    injector.Replace(&osCreate).
+    shim.Replace(&osCreate).
       With(func(name string) (*os.File, error) {
         return nil, fmt.Errorf("test error")
       }),
@@ -77,12 +77,12 @@ var:
  }
 ```
 
-The injection works similar to described above, just add another replacement into the `injector.Run()` function:
+The injection works similar to described above, just add another replacement into the `shim.Run()` function:
 
 ```go
-  injector.Run(
+  shim.Run(
     ...
-    injector.Replace(&fileRead).
+    shim.Replace(&fileRead).
       With(func(b []byte) (n int, err error) {
         return 0, fmt.Errorf("test error")
       }),
@@ -93,7 +93,7 @@ For integrated examples check out [`examples/main.go`](examples/main.go) and [`e
 
 ## Why another library?
 
-This library essentially offers a nice API around this manual dependency injection pattern:
+This library essentially offers a nice API around this manual shimming pattern:
 
 ```go
 func TestSomething(t *testing.T) {
@@ -116,7 +116,7 @@ The API is also fully typed using go generics. Whatever type you put in `Replace
 first call. Your IDE will give you those type hints as code completion.
 
 <p align="center">
-  <img src="https://github.com/jonnylangefeld/injector/assets/18717376/b56d6093-a24f-404f-8d3d-db7df25dc79b" width="90%" />
+  <img src="https://github.com/jonnylangefeld/shim/assets/18717376/b56d6093-a24f-404f-8d3d-db7df25dc79b" width="90%" />
 </p>
 
 An alternative to this approach is to create an interface where the production implementation actually calls the underlying function and a test implementation

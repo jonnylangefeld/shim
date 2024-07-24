@@ -1,5 +1,5 @@
 # Configuration for https://goreleaser.com/
-project_name: injector
+project_name: shim
 
 builds:
   - skip: true
@@ -7,7 +7,7 @@ builds:
 release:
   github:
     owner: jonnylangefeld
-    name: injector
+    name: shim
   draft: false
   prerelease: false
   name_template: "v{{.Version}}"

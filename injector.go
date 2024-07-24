@@ -1,9 +1,9 @@
 /*
-injector serves as user friendly dependency injection.
+shim is the most user friendly shimming library for go!
 
 Use this library to overwrite a function from an imported package (that isn't available via an interface) with your own stub for testing.
 */
-package injector
+package shim
 
 // Run is the main utility function this package offers.
 // It allows to run with replacements. A `Replacer` can be created via
@@ -11,7 +11,7 @@ package injector
 //
 // Example:
 //
-//	injector.Run(
+//	shim.Run(
 //		func() {
 //			// put anything you want run and assert in a test in here
 //
@@ -20,11 +20,11 @@ package injector
 //			main()
 //		},
 //		// Add a list of replacements using `Replace(&original).With(replacement)`
-//		injector.Replace(&osCreate).
+//		shim.Replace(&osCreate).
 //			With(func(name string) (*os.File, error) {
 //				return test.file, test.createErr
 //			}),
-//		injector.Replace(&fileRead).
+//		shim.Replace(&fileRead).
 //			With(func(b []byte) (n int, err error) {
 //				return 0, test.readErr
 //			}),

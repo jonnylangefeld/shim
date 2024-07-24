@@ -1,4 +1,4 @@
-package injector
+package shim
 
 import "testing"
 

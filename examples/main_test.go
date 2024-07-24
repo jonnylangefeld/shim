@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jonnylangefeld/injector"
+	"github.com/jonnylangefeld/shim"
 )
 
 func TestMain(t *testing.T) {
@@ -31,7 +31,7 @@ func TestMain(t *testing.T) {
 
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
-			injector.Run(
+			shim.Run(
 				func() {
 					// put anything you want run and assert in a test in here
 
@@ -40,11 +40,11 @@ func TestMain(t *testing.T) {
 					main()
 				},
 				// Add a list of replacements using `Replace(&original).With(replacement)`
-				injector.Replace(&osCreate).
+				shim.Replace(&osCreate).
 					With(func(name string) (*os.File, error) {
 						return test.file, test.createErr
 					}),
-				injector.Replace(&fileRead).
+				shim.Replace(&fileRead).
 					With(func(b []byte) (n int, err error) {
 						return 0, test.readErr
 					}),
